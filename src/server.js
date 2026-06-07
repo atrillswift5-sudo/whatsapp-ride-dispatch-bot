@@ -30,7 +30,11 @@ app.get("/webhook", (req, res) => {
 
 app.post("/webhook", async (req, res) => {
   try {
+    console.log("WEBHOOK HIT:", JSON.stringify(req.body, null, 2));
+
     const messages = extractIncomingMessages(req.body);
+
+    console.log("MESSAGES:", messages);
 
     for (const msg of messages) {
       const driverResult = await db.query("SELECT * FROM drivers WHERE phone = $1", [msg.from]);
