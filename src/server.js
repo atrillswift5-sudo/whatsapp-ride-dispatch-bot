@@ -52,7 +52,7 @@ app.post("/webhook", async (req, res) => {
 
     res.sendStatus(200);
   } catch (error) {
-    console.error("Webhook error:", error);
+    console.error("Webhook error:", error.response?.data || error.message || error);
     res.sendStatus(500);
   }
 });
